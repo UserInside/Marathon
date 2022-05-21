@@ -15,7 +15,7 @@ public class Task2 {
 
         Player.info();
         for (Player p : team) {
-            while (p.getStamina() > 0) {
+            while (p.getStamina() > Player.MIN_STAMINA) {
                 p.run();
             }
             Player.info();
