@@ -47,7 +47,7 @@ public class Player {
                     System.out.println("Команды неполные. На поле есть еще " + vacants +
                             " свободных места");
                     break;
-                case 1:
+                default:
                     System.out.println("Команды неполные. На поле есть еще " + vacants +
                             " свободное место");
                     break;

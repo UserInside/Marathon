@@ -24,7 +24,7 @@ public class Teacher {
             case 4 :
                 literalValue = "хорошо";
                 break;
-            case 5 :
+            default:
                 literalValue = "отлично";
                 break;
         }
