@@ -2,6 +2,9 @@ package day11.task2;
 
 public class Paladin extends Hero implements Healer {
 
+    public final double HEAL_TEAMMATE = 10;
+    public final double HEAL_HIMSELF = 25;
+
     public Paladin() {
         health = 100;
         physAtt = 15;
@@ -11,21 +14,17 @@ public class Paladin extends Hero implements Healer {
 
     @Override
     public void healHimself() {
-        health += 25;
-        if(health > 100) health = 100;
+        if (health + HEAL_HIMSELF > 100) health = 100;
+        else health += HEAL_HIMSELF;
 
     }
 
     @Override
     public void healTeammate(Hero hero) {
-        hero.health += 10;
-        if(hero.health > 100) hero.health = 100;
+        if (hero.health + HEAL_TEAMMATE > 100) hero.health = 100;
+        else hero.health += HEAL_TEAMMATE;
     }
 
-    public void physicalAttack(Hero hero) {
-        hero.health -= physAtt * (1 - hero.physDef);
-        if (hero.health < 0) hero.health = 0;
-    }
     public String toString() {
         return "Paladin{health="+health+"}";
     }

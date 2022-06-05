@@ -9,12 +9,6 @@ public class Warrior extends Hero implements PhysAttack {
         magicDef = 0.0;
     }
 
-
-    public void physicalAttack(Hero hero) {
-        hero.health -= physAtt * (1 - hero.physDef);
-        if (hero.health < 0) hero.health = 0;
-    }
-
     public String toString() {
         return "Warrion{health="+health+"}";
     }

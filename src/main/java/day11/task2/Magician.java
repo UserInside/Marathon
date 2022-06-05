@@ -1,6 +1,7 @@
 package day11.task2;
 
 public class Magician extends Hero implements PhysAttack, MagicAttack {
+    double magicAtt;
 
     public Magician() {
         health = 100;
@@ -10,19 +11,20 @@ public class Magician extends Hero implements PhysAttack, MagicAttack {
         magicDef = 0.8;
     }
 
-    public void physicalAttack(Hero hero) {
-        hero.health -= physAtt * (1 - hero.physDef);
-        if (hero.health < 0) hero.health = 0;
-    }
-
     public void magicalAttack(Hero hero) {
-        hero.health -= magicAtt * (1 - hero.magicDef);
-        if (hero.health < 0) hero.health = 0;
+        double magDmg = (magicAtt * (1 - hero.magicDef));
+        if (magDmg > hero.health) {
+            hero.health = 0;
+        } else {
+            hero.health -= magDmg;
+
+        }
     }
 
-    public String toString() {
+    public String toString () {
         return "Magician{health=" + health + "}";
     }
 
-
 }
+
+

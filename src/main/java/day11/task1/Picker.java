@@ -1,56 +1,50 @@
 package day11.task1;
 
-public class Picker extends Warehouse implements Worker {
-    private Warehouse warehouse;
+public class Picker implements Worker {
+    int salary;
+    boolean isPaid = false;
+    Warehouse wh;
+
+    public Picker(Warehouse wh) {
+        this.wh = wh;
+    }
 
     public int getSalary() {
-        return this.salary;
-    }
-    public void setSalary(int salary) {
-        this.salary = salary;
+        return salary;
     }
 
     public boolean getIsPaid() {
         return isPaid;
     }
-    public void setIsPaid(boolean isPaid) {
-        this.isPaid = isPaid;
-    }
 
-    public Picker(Warehouse warehouse) {
-        this.warehouse = warehouse;
-
-    }
-
+    @Override
     public String toString() {
-        return "Заказов поулчено " + warehouse.getCountPickedOrders() + ". Зарплата к выдаче - " + salary;
+        return "Сборщик обработал " + wh.getCountPickedOrders() + " заказов. Зарплата составила " + salary;
     }
 
+    @Override
     public void doWork() {
         salary += 80;
-        warehouse.setCountPickedOrders(warehouse.getCountPickedOrders() + 1);
-        if (warehouse.getCountPickedOrders() == 10000) {
+        wh.countPickedOrders = wh.getCountPickedOrders() + 1;
+        if (wh.getCountPickedOrders() == 10000) {
             bonus();
         }
+
 
     }
 
     @Override
     public void bonus() {
-        if (getIsPaid()) {
+        if (isPaid) {
             System.out.println("Бонус уже был выплачен");
+            return;
+        }
+        if (wh.getCountPickedOrders() < 10000) {
+            System.out.println("Бонус пока не доступен");
         } else {
-            if (warehouse.getCountPickedOrders() < 10000) {
-                System.out.println("Бонус пока не доступен");
-            } else {
-                setSalary(getSalary() + 70000);
-                setIsPaid(true);
-            }
+            salary += 70000;
+            isPaid = true;
         }
 
-
     }
-
 }
-
-

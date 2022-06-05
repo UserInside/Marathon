@@ -1,50 +1,47 @@
 package day11.task1;
 
-public class Courier extends Warehouse implements Worker {
+public class Courier implements Worker {
+    int salary;
+    boolean isPaid = false;
+    Warehouse wh;
 
-    private Warehouse warehouse;
+    public Courier(Warehouse wh) {
+        this.wh = wh;
+    }
 
     public int getSalary() {
         return salary;
     }
-  public void setSalary(int salary) {
-    this.salary =  salary;
-  }
 
     public boolean getIsPaid() {
         return isPaid;
     }
-    public void setIsPaid (boolean isPaid) {
-        this.isPaid = isPaid;
-    }
 
-    public Courier(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
-
+    @Override
     public String toString() {
-        return "Заказов доставлено - " + warehouse.getCountDeliveredOrders() + ". Зарплата к выдаче - " + getSalary();
+        return "Курьер обработал " + wh.getCountDeliveredOrders() + " заказов. Зарплата составила " + salary;
     }
 
-    public void doWork() {
+    public void doWork(){
         salary += 100;
-        warehouse.setCountDeliveredOrders(warehouse.getCountDeliveredOrders() + 1);
-        if (warehouse.getCountDeliveredOrders() == 10000) {
-            bonus();
-        }
-
+        wh.countDeliveredOrders = wh.getCountDeliveredOrders() + 1;
+        if (wh.getCountDeliveredOrders() == 10000) bonus();
     }
 
-    public void bonus() {
+    public void bonus(){
         if (getIsPaid()) {
             System.out.println("Бонус уже был выплачен");
+            return;
+        }
+        if (wh.getCountDeliveredOrders() < 10000){
+            System.out.println("Бонус пока не доступен");
         } else {
-            if (warehouse.getCountDeliveredOrders() < 10000) {
-                System.out.println("Бонус пока не доступен");
-            } else if (warehouse.getCountDeliveredOrders() >= 10000) {
-                setSalary(getSalary() + 50000);
-                setIsPaid(true);
-            }
+            salary += 50000;
+            isPaid = true;
         }
     }
+
+
+
+
 }
