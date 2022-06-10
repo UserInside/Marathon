@@ -1,9 +1,12 @@
 package day11.task1;
 
 public class Courier implements Worker {
-    int salary;
-    boolean isPaid = false;
-    Warehouse wh;
+    private int salary;
+    private boolean isPaid = false;
+    private Warehouse wh;
+    private int bonus = 50000;
+    private int norm = 10000;
+
 
     public Courier(Warehouse wh) {
         this.wh = wh;
@@ -25,7 +28,7 @@ public class Courier implements Worker {
     public void doWork(){
         salary += 100;
         wh.countDeliveredOrders = wh.getCountDeliveredOrders() + 1;
-        if (wh.getCountDeliveredOrders() == 10000) bonus();
+        if (wh.getCountDeliveredOrders() == norm) bonus();
     }
 
     public void bonus(){
@@ -33,10 +36,10 @@ public class Courier implements Worker {
             System.out.println("Бонус уже был выплачен");
             return;
         }
-        if (wh.getCountDeliveredOrders() < 10000){
+        if (wh.getCountDeliveredOrders() < norm){
             System.out.println("Бонус пока не доступен");
         } else {
-            salary += 50000;
+            salary += bonus;
             isPaid = true;
         }
     }

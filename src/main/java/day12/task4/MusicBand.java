@@ -11,14 +11,14 @@ public class MusicBand {
     public void setMember(String member) {
         this.members.add(member);
     }
-    public void removeMember (String name) {
+
+    public void removeMember(String name) {
         members.remove(name);
     }
 
     public MusicBand(String name, int year, List<String> members) {
         this.name = name;
         this.year = year;
-
         this.members = members;
 
     }
@@ -37,7 +37,6 @@ public class MusicBand {
         }
 
     }
-
 
 
 }

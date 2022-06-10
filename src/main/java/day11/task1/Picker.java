@@ -1,9 +1,11 @@
 package day11.task1;
 
 public class Picker implements Worker {
-    int salary;
-    boolean isPaid = false;
-    Warehouse wh;
+    private int salary;
+    private boolean isPaid = false;
+    private Warehouse wh;
+    private int bonus = 70000;
+    private int norm = 10000;
 
     public Picker(Warehouse wh) {
         this.wh = wh;
@@ -26,7 +28,7 @@ public class Picker implements Worker {
     public void doWork() {
         salary += 80;
         wh.countPickedOrders = wh.getCountPickedOrders() + 1;
-        if (wh.getCountPickedOrders() == 10000) {
+        if (wh.getCountPickedOrders() == norm) {
             bonus();
         }
 
@@ -39,10 +41,10 @@ public class Picker implements Worker {
             System.out.println("Бонус уже был выплачен");
             return;
         }
-        if (wh.getCountPickedOrders() < 10000) {
+        if (wh.getCountPickedOrders() < norm) {
             System.out.println("Бонус пока не доступен");
         } else {
-            salary += 70000;
+            salary += bonus;
             isPaid = true;
         }
 
