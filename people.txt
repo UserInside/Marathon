@@ -1,0 +1,7 @@
+Mike 24
+John 19
+Anna 20
+Miguel 5
+Alena 34
+Igor 33
+Vanya -22
